@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: demo
+    release: {{ .Release.Name }}
+    value: {{ .Values.demo.name }}
+    kube: {{ .Capabilities.KubeVersion  }}
+    chart: {{ .Chart.APIVersion }}
+  name: demo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: demo
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: demo
+    spec:
+      containers:
+      - image: nginx
+        name: nginx
+        resources: {}
+status: {}
